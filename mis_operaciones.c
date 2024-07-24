@@ -1,39 +1,59 @@
-import suma
-import resta
-import potencia
-import logaritmo
+#include <stdio.h>
+#include <stdlib.h>
+#include "suma.h"
+#include "resta.h"
+#include "potencia.h"
+#include "logaritmo.h"
 
-def pedir_numeros():
-    a = float(input("Introduce el primer número: "))
-    b = float(input("Introduce el segundo número: "))
-    return a, b
+void pedir_numeros(double *a, double *b) {
+    printf("Introduce el primer número: ");
+    scanf("%lf", a);
+    printf("Introduce el segundo número: ");
+    scanf("%lf", b);
+}
 
-def main():
-    while True:
-        print("\nElige una operación:")
-        print("1. Sumar")
-        print("2. Restar")
-        print("3. Potencia")
-        print("4. Logaritmo Natural del primer número")
-        print("5. Salir")
-        opcion = input("Opción: ")
+int main() {
+    int opcion;
+    double a, b, resultado;
 
-        if opcion == "1":
-            a, b = pedir_numeros()
-            print(f"Resultado: {suma.sumar(a, b)}")
-        elif opcion == "2":
-            a, b = pedir_numeros()
-            print(f"Resultado: {resta.restar(a, b)}")
-        elif opcion == "3":
-            a, b = pedir_numeros()
-            print(f"Resultado: {potencia.potencia(a, b)}")
-        elif opcion == "4":
-            a = float(input("Introduce el número: "))
-            print(f"Resultado: {logaritmo.logaritmo_natural(a)}")
-        elif opcion == "5":
-            break
-        else:
-            print("Opción no válida")
+    while (1) {
+        printf("\nElige una operación:\n");
+        printf("1. Sumar\n");
+        printf("2. Restar\n");
+        printf("3. Potencia\n");
+        printf("4. Logaritmo Natural del primer número\n");
+        printf("5. Salir\n");
+        printf("Opción: ");
+        scanf("%d", &opcion);
 
-if __name__ == "__main__":
-    main()
+        switch (opcion) {
+            case 1:
+                pedir_numeros(&a, &b);
+                resultado = sumar(a, b);
+                printf("Resultado: %lf\n", resultado);
+                break;
+            case 2:
+                pedir_numeros(&a, &b);
+                resultado = restar(a, b);
+                printf("Resultado: %lf\n", resultado);
+                break;
+            case 3:
+                pedir_numeros(&a, &b);
+                resultado = potencia(a, b);
+                printf("Resultado: %lf\n", resultado);
+                break;
+            case 4:
+                printf("Introduce el número: ");
+                scanf("%lf", &a);
+                resultado = logaritmo_natural(a);
+                printf("Resultado: %lf\n", resultado);
+                break;
+            case 5:
+                exit(0);
+            default:
+                printf("Opción no válida\n");
+        }
+    }
+
+    return 0;
+}
