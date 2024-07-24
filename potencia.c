@@ -1,5 +1,6 @@
 #include "potencia.h"
+#include <math.h>
 
-double potencia(double a, double b) {
-    return pow(a, b);
+double potencia(double base, double exponente) {
+    return pow(base, exponente);
 }
